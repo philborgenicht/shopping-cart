@@ -10,7 +10,9 @@ class App extends Component {
       <div className="App">
         <CartHeader/>
         <CartItems/>
-        <CartFooter/>
+        <CartFooter
+          copyright="2016"
+        />
       </div>
     );
   }
