@@ -21,26 +21,24 @@ const products = [
   { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
   { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
 ]
+
 class App extends Component {
 
-
   addToList = (elem) => {
-    const newItem = products.filter(item => item.name === elem.product)[0]
+    const itemFromProducts = products.filter(item => item.name === elem.product)[0]
     const id = this.state.cartItemsList[this.state.cartItemsList.length-1].id+1
-    const finalItem = {
+    const newItem = {
       id: id,
-      product: newItem,
+      product: itemFromProducts,
       quantity: elem.quantity
     }
-    this.setState({cartItemsList: [...this.state.cartItemsList, finalItem]})
-    // console.log('this.state: ',this.state)
+    this.setState({cartItemsList: [...this.state.cartItemsList, newItem]})
   }
 
   constructor(props) {
     super(props)
     this.state = {cartItemsList: cartItemsList}
   }
-
 
   render() {
     return (
