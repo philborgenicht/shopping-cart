@@ -7,7 +7,7 @@ class CartTotal extends Component {
     for (let elem of this.props.list) {
       total += (elem.product.priceInCents*elem.quantity)
     }
-    return total
+    return total.toFixed(2)
   }
 
   render () {

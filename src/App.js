@@ -24,22 +24,28 @@ const products = [
 ]
 
 class App extends Component {
-
-  addToList = (elem) => {
-    const itemFromProducts = products.filter(item => item.name === elem.product)[0]
-    const id = this.state.cartItemsList[this.state.cartItemsList.length-1].id+1
-    const newItem = {
-      id: id,
-      product: itemFromProducts,
-      quantity: Number(elem.quantity)
-    }
-    this.setState({cartItemsList: [...this.state.cartItemsList, newItem]})
-  }
-
   constructor(props) {
     super(props)
     this.state = {cartItemsList: cartItemsList}
   }
+
+  addToList = (elem) => {
+    const item = this.state.cartItemsList.filter(product => product.product.name === elem.product)
+    if (item.length === 1) {
+      item[0].quantity += Number(elem.quantity)
+      this.setState({cartItemsList: this.state.cartItemsList})
+    } else {
+      const itemFromProducts = products.filter(item => item.name === elem.product)[0]
+      const id = this.state.cartItemsList[this.state.cartItemsList.length-1].id+1
+      const newItem = {
+        id: id,
+        product: itemFromProducts,
+        quantity: Number(elem.quantity)
+      }
+      this.setState({cartItemsList: [...this.state.cartItemsList, newItem]})
+    }
+  }
+
 
   render() {
     return (
